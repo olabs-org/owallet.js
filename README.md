@@ -1,7 +1,10 @@
 # owallet.js
 
-##### Very lightweight Obyte wallet. It works everywhere where you can run JS.
-<sub>If somewhere it didn't work, write, I'll fix it :)</sub>
+Very lightweight Obyte wallet. It works everywhere where you can run JS.
+
+<br>
+
+<sub>If something didn't work - write me, I'll fix it :)</sub>
 
 !!! Support only single address wallet !!!
 
@@ -31,7 +34,7 @@ wallet + generator
 ```html
 <script src="https://unpkg.com/owallet.js@0.0.1/dist/owallet.all.min.js"></script>
 ```
-wallet and generator (separately). Generator is needed only for creating and recovery wallet.
+wallet and generator (separately). Generator needs only for creating and recovery wallet.
 ```html
 <script src="https://unpkg.com/owallet.js@0.0.1/dist/owallet.generator.min.js"></script>
 <script src="https://unpkg.com/owallet.js@0.0.1/dist/owallet.lib.min.js"></script>
@@ -57,7 +60,7 @@ See CDN.
 ```javascript
 const w = new Wallet();
 ```
-Optionals arguments
+Optional arguments
 - hub url (wss://obyte.org/bb)
 - testnet (boolean)
 
@@ -76,7 +79,7 @@ Connect to hub
 ```javascript
 w.connect();
 ```
-Optionals argument
+Optional argument
 - testnet (need for change network)
 
 Change network:
@@ -97,7 +100,7 @@ w.close()
 <br>
 
 ##### createWallet
-Creates and saves wallet
+Create and save wallet
 ```javascript
 await w.createWallet('password');
 ```
@@ -118,7 +121,7 @@ Required arguments
 <br>
 
 ##### getAddress
-Returns obyte address
+return obyte address
 ```javascript
 w.getAddress();
 ```
@@ -126,7 +129,7 @@ w.getAddress();
 <br>
 
 ##### getBalance
-Returns balance
+return balance
 ```javascript
 await w.getBalance();
 ```
@@ -142,7 +145,7 @@ Required arguments
 - address (string)
 - amount (string)
 
-Optionals argument
+Optional argument
 - asset (string)
 
 <br>
@@ -155,7 +158,7 @@ Required arguments
 - password (string)
 - outputs (array)
 
-Optionals argument
+Optional argument
 - asset (string)
 
 <br>
@@ -174,7 +177,7 @@ Required arguments
 <br>
 
 ##### getRawHistory
-Returns history from hub
+return history from hub
 ```javascript
 await w.getRawHistory();
 ```
@@ -182,9 +185,9 @@ await w.getRawHistory();
 <br>
 
 ##### getHistoryPayments
-Returns prepared payment history
+return prepared payment history
 ```javascript
 await w.getHistoryPayments()
 ```
 
-Questions? Help is needed? @xjenek
+Questions? Help is needed? @xjenek - telegram, xJeneK#3181 - discord
