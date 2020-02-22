@@ -6,7 +6,7 @@ Very lightweight Obyte wallet. It works everywhere where you can run JS.
 
 <sub>If something didn't work - write me, I'll fix it :)</sub>
 
-!!! Support only single address wallet !!!
+!!! Support only single address wallet and does not support private assets !!!
 
 ## How to start?
 
