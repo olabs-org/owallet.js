@@ -96,9 +96,9 @@ async function saveAccount(address, pubkey, account, password) {
     await saveAddress(address);
     await savePubKey(pubkey);
     if (isBrowser && !isRN) {
-        localStorage.setItem('account' + pref, account);
+        localStorage.setItem('account' + pref, data.account);
     } else if (isRN) {
-        await AsyncStorage.setItem('account' + pref, account);
+        await AsyncStorage.setItem('account' + pref, data.account);
     } else {
         await fs.writeFile(path + pref, JSON.stringify(data));
     }
