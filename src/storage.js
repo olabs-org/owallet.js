@@ -1,6 +1,6 @@
 const isBrowser = typeof window !== 'undefined';
 const isRN = typeof navigator != 'undefined' && navigator.product === 'ReactNative';
-const CryptoJS = require("crypto-js");
+const SimpleCrypto = require("simple-crypto-js").default;
 let AsyncStorage;
 if (isRN) {
     const rn = require('react-native');
@@ -81,7 +81,9 @@ function getAccount(password) {
     if (!password) return {error: 'please unlock wallet'};
     let d;
     try {
-        d = CryptoJS.AES.decrypt(data.account, password).toString(CryptoJS.enc.Utf8);
+        const simpleCrypto = new SimpleCrypto(password);
+        d = simpleCrypto.decrypt(data.account);
+        console.error('q', d);
         d = JSON.parse(d);
         if(d.privateKey) d.privateKey = Buffer.from(d.privateKey, 'hex');
     } catch (e) {
@@ -91,7 +93,8 @@ function getAccount(password) {
 }
 
 async function saveAccount(address, pubkey, account, password) {
-    data.account = CryptoJS.AES.encrypt(JSON.stringify(account), password).toString();
+    const simpleCrypto = new SimpleCrypto(password);
+    data.account = simpleCrypto.encrypt(JSON.stringify(account));
     data.pubkey = pubkey;
     await saveAddress(address);
     await savePubKey(pubkey);

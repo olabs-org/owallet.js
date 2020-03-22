@@ -32,12 +32,12 @@ const w = new Wallet(null, true); // testnet
 #### CDN
 wallet + generator
 ```html
-<script src="https://unpkg.com/owallet.js@0.0.4/dist/owallet.all.min.js"></script>
+<script src="https://unpkg.com/owallet.js@0.0.5/dist/owallet.all.min.js"></script>
 ```
 wallet and generator (separately). Generator needs only for creating and recovery wallet.
 ```html
-<script src="https://unpkg.com/owallet.js@0.0.4/dist/owallet.generator.min.js"></script>
-<script src="https://unpkg.com/owallet.js@0.0.4/dist/owallet.lib.min.js"></script>
+<script src="https://unpkg.com/owallet.js@0.0.5/dist/owallet.generator.min.js"></script>
+<script src="https://unpkg.com/owallet.js@0.0.5/dist/owallet.lib.min.js"></script>
 ```
 
 

@@ -1,6 +1,6 @@
 {
   "name": "owallet.js",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -21,11 +21,11 @@
     "bip32": "^2.0.5",
     "bip39": "^3.0.2",
     "browserify": "^16.5.0",
-    "crypto-js": "^4.0.0",
     "get-random-values": "^1.2.0",
     "gulp": "^4.0.2",
     "gulp-uglify-es": "^2.0.0",
     "react-native-bip39": "^2.3.0",
+    "simple-crypto-js": "^2.2.0",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0"
   }
