@@ -1,6 +1,7 @@
 const isBrowser = typeof window !== 'undefined';
 const isRN = typeof navigator != 'undefined' && navigator.product === 'ReactNative';
-const SimpleCrypto = require("simple-crypto-js").default;
+const aesJs = require("aes-js")
+const sha256 = require('js-sha256').sha256;
 let AsyncStorage;
 if (isRN) {
     const rn = require('react-native');
@@ -81,8 +82,7 @@ function getAccount(password) {
     if (!password) return {error: 'please unlock wallet'};
     let d;
     try {
-        const simpleCrypto = new SimpleCrypto(password);
-        d = simpleCrypto.decrypt(data.account);
+        d = decrypt(data.account, password);
         console.error('q', d);
         d = JSON.parse(d);
         if(d.privateKey) d.privateKey = Buffer.from(d.privateKey, 'hex');
@@ -93,8 +93,7 @@ function getAccount(password) {
 }
 
 async function saveAccount(address, pubkey, account, password) {
-    const simpleCrypto = new SimpleCrypto(password);
-    data.account = simpleCrypto.encrypt(JSON.stringify(account));
+    data.account = encrypt(JSON.stringify(account), password);
     data.pubkey = pubkey;
     await saveAddress(address);
     await savePubKey(pubkey);
@@ -106,6 +105,19 @@ async function saveAccount(address, pubkey, account, password) {
         await fs.writeFile(path + pref, JSON.stringify(data));
     }
     return {ok: true};
+}
+
+function encrypt(text, pass){
+    const aesCtr = new aesJs.ModeOfOperation.ctr(aesJs.utils.hex.toBytes(sha256(pass)), new aesJs.Counter(5));
+    const encryptedBytes = aesCtr.encrypt(aesJs.utils.utf8.toBytes(text));
+    return aesJs.utils.hex.fromBytes(encryptedBytes);
+}
+
+function decrypt(hex, pass){
+    const encryptedBytes = aesJs.utils.hex.toBytes(hex);
+    const aesCtr = new aesJs.ModeOfOperation.ctr(aesJs.utils.hex.toBytes(sha256(pass)), new aesJs.Counter(5));
+    const decryptedBytes = aesCtr.decrypt(encryptedBytes);
+    return aesJs.utils.utf8.fromBytes(decryptedBytes);
 }
 
 

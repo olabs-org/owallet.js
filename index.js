@@ -1,4 +1,4 @@
-const obyte = require('@olabs/obyte');
+const obyte = require('@olabs/obyte/lib/index');
 const storage = require('./src/storage');
 const isBrowser = typeof window !== 'undefined';
 const isRN = typeof navigator != 'undefined' && navigator.product === 'ReactNative';
@@ -72,6 +72,10 @@ class Wallet {
 
     getAddress() {
         return storage.getAddress();
+    }
+
+    getAccount(pass){
+        return storage.getAccount(pass);
     }
 
     async getBalance() {
